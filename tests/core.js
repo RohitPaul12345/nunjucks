@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var expect,
+  let expect,
     nunjucks,
     fs,
     os,
@@ -24,7 +24,7 @@
   }
 
   describe('nunjucks.configure', function() {
-    var tempdir;
+    let tempdir;
 
     before(function() {
       if (fs && path && os) {
