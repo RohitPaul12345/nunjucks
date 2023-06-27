@@ -2,7 +2,7 @@
 
 'use strict';
 
-var NYC = require('nyc');
+let NYC = require('nyc');
 
 process.env.NODE_ENV = 'test';
 
