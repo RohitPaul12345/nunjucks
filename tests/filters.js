@@ -1,13 +1,13 @@
 (function() {
   'use strict';
 
-  var expect;
-  var util;
-  var lib;
-  var r;
-  var render;
-  var equal;
-  var finish;
+  let expect;
+  let util;
+  let lib;
+  let r;
+  let render;
+  let equal;
+  let finish;
 
   if (typeof require !== 'undefined') {
     expect = require('expect.js');
@@ -531,7 +531,7 @@
         }, '2');
       });
       it('should output the length of an array created with "new Array" with user-defined properties', function test() {
-        var arr = new Array(0, 1); // eslint-disable-line no-array-constructor
+        let arr = new Array(0, 1); // eslint-disable-line no-array-constructor
         arr.key = 'value';
         equal('{{ arr | length }}', {
           arr: arr
@@ -539,7 +539,7 @@
       });
       it('should output the length of a Map', function test() {
         /* global Map */
-        var map;
+        let map;
         if (typeof Map === 'undefined') {
           this.skip();
         } else {
@@ -552,7 +552,7 @@
       });
       it('should output the length of a Set', function test() {
         /* global Set */
-        var set;
+        let set;
         if (typeof Set === 'undefined') {
           this.skip();
         } else {
@@ -564,7 +564,7 @@
     });
 
     it('list', function(done) {
-      var person = {
+      let person = {
         name: 'Joe',
         age: 83
       };
@@ -607,10 +607,10 @@
     });
 
     it('random', function(done) {
-      var i;
+      let i;
       for (i = 0; i < 100; i++) {
         render('{{ [1,2,3,4,5,6,7,8,9] | random }}', function(err, res) {
-          var val = parseInt(res, 10);
+          let val = parseInt(res, 10);
           expect(val).to.be.within(1, 9);
         });
       }
@@ -619,7 +619,7 @@
     });
 
     it('reject', function(done) {
-      var context = {
+      let context = {
         numbers: [0, 1, 2, 3, 4, 5]
       };
 
@@ -635,7 +635,7 @@
     });
 
     it('rejectattr', function(done) {
-      var foods = [{
+      let foods = [{
         tasty: true
       }, {
         tasty: false
@@ -649,7 +649,7 @@
     });
 
     it('select', function(done) {
-      var context = {
+      let context = {
         numbers: [0, 1, 2, 3, 4, 5]
       };
 
@@ -665,7 +665,7 @@
     });
 
     it('selectattr', function(done) {
-      var foods = [{
+      let foods = [{
         tasty: true
       }, {
         tasty: false
@@ -745,7 +745,7 @@
     });
 
     it('slice', function(done) {
-      var tmpl = '{% for items in arr | slice(3) %}' +
+      let tmpl = '{% for items in arr | slice(3) %}' +
         '--' +
         '{% for item in items %}' +
         '{{ item }}' +
@@ -964,7 +964,7 @@
     });
 
     it('urlencode - object without prototype', function(done) {
-      var obj = Object.create(null);
+      let obj = Object.create(null);
       obj['1'] = 2;
       obj['&1'] = '&2';
 
