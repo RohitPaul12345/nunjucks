@@ -5,28 +5,28 @@
 
 require('module-alias/register');
 
-var path = require('path');
-var webpack = require('webpack');
-var pjson = require('../package.json');
-var promiseSequence = require('./lib/utils').promiseSequence;
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var TEST_ENV = (process.env.NODE_ENV === 'test');
+let path = require('path');
+let webpack = require('webpack');
+let pjson = require('../package.json');
+let promiseSequence = require('./lib/utils').promiseSequence;
+let UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+let TEST_ENV = (process.env.NODE_ENV === 'test');
 
-var destDir = path.resolve(path.join(
+let destDir = path.resolve(path.join(
   __dirname,
   (TEST_ENV) ? '../tests/browser' : '../browser'));
 
 function runWebpack(opts) {
-  var type = (opts.slim) ? '(slim, only works with precompiled templates)' : '';
-  var ext = (opts.min) ? '.min.js' : '.js';
+  let type = (opts.slim) ? '(slim, only works with precompiled templates)' : '';
+  let ext = (opts.min) ? '.min.js' : '.js';
   if (opts.slim) {
     ext = '-slim' + ext;
   }
-  var filename = 'nunjucks' + ext;
+  let filename = 'nunjucks' + ext;
 
   return new Promise(function(resolve, reject) {
     try {
-      var config = {
+      let config = {
         entry: './nunjucks/index.js',
         devtool: 'source-map',
         output: {
@@ -112,7 +112,7 @@ function runWebpack(opts) {
   });
 }
 
-var runConfigs = [
+let runConfigs = [
   {min: true, slim: false},
   {min: true, slim: true}
 ];
@@ -123,7 +123,7 @@ if (!TEST_ENV) {
     {min: false, slim: true});
 }
 
-var promises = runConfigs.map(function(opts) {
+let promises = runConfigs.map(function(opts) {
   return function() {
     return runWebpack(opts).then(function(stats) {
       console.log(stats); // eslint-disable-line no-console
